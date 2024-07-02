@@ -1,0 +1,59 @@
+<!-- update_product.html -->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actualizar Producto</title>
+    <!-- Enlace a Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Estilos CSS personalizados -->
+    <style>
+        /* Estilo para ajustar el tamaño de la imagen previa */
+        .preview-image {
+            max-width: 300px;
+            max-height: 300px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Actualizar Producto</h1>
+        <hr>
+        <form action="{{ url_for('update_product', productId=producto._id) }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ producto.nombre }}" required>
+            </div>
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>{{ producto.descripcion }}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="marca">Marca</label>
+                <input type="text" class="form-control" id="marca" name="marca" value="{{ producto.marca }}" required>
+            </div>
+            <div class="form-group">
+                <label for="precio">Precio</label>
+                <input type="number" class="form-control" id="precio" name="precio" value="{{ producto.precio }}" required>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Imagen</label>
+                <input type="file" class="form-control-file" id="imagen" name="imagen">
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.secure_url }}" class="img-fluid preview-image" alt="{{ producto.nombre }}">
+                {% endif %}
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Actualizar Producto</button>
+        </form>
+    </div>
+
+    <!-- Scripts de Bootstrap (jQuery y Popper.js) y Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

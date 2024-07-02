@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.node
+    ports:
+      - "3000:3000"
+    restart: always
+  
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    ports:
+      - "5000:5000"
+    restart: always
